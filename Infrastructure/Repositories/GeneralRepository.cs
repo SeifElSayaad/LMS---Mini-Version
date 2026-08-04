@@ -19,6 +19,12 @@ namespace LMS___Mini_Version.Infrastructure.Repositories
             _context = context;
         }
 
+        public IQueryable<T> GetAll()
+        {
+            return _context.Set<T>();
+        }
+            
+
         /// <summary>
         /// Materializes the entire table into memory. Use GetTable() + filters for large datasets.
         /// </summary>

@@ -16,6 +16,9 @@
         // Returns fully-materialized list (query already executed)
         Task<IEnumerable<T>> GetAllAsync();
 
+
+        IQueryable<T> GetAll();
+
         // Uses FindAsync to leverage the Change Tracker (avoids redundant DB hits)
         Task<T?> GetByIdAsync(int id);
 
