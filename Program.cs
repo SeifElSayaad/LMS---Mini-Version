@@ -5,6 +5,7 @@ using LMS___Mini_Version.Persistence;
 using LMS___Mini_Version.Services.Implementations;
 using LMS___Mini_Version.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 namespace LMS___Mini_Version
 {
@@ -18,6 +19,8 @@ namespace LMS___Mini_Version
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddMediatR(typeof(Program).Assembly);
+
 
             // ─── Database ─────────────────────────────────────────────────
             builder.Services.AddDbContext<AppDbContext>(options =>

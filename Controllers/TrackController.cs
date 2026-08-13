@@ -3,6 +3,8 @@ using LMS___Mini_Version.Mapping;
 using LMS___Mini_Version.Services.Interfaces;
 using LMS___Mini_Version.ViewModels.Track;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using LMS___Mini_Version.Features.Tracks.Queries;
 
 namespace LMS___Mini_Version.Controllers
 {
@@ -18,10 +20,11 @@ namespace LMS___Mini_Version.Controllers
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;
-
-        public TrackController(ITrackService trackService)
+        IMediator _mediator;
+        public TrackController(ITrackService trackService, IMediator mediator)
         {
             _trackService = trackService;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -35,9 +38,12 @@ namespace LMS___Mini_Version.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TrackDetailViewModel>> GetById(int id)
         {
-            var dto = await _trackService.GetByIdAsync(id).ConfigureAwait(false);
-            if (dto == null) return NotFound();
-            return Ok(dto.ToDetailViewModel());
+            var result = await _mediator.Send(new GetTrackByIdQuery(id));
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result.ToDetailViewModel());
         }
 
         [HttpPost]
