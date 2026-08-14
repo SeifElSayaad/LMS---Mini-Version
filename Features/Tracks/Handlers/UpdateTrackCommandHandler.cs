@@ -26,6 +26,7 @@ namespace LMS___Mini_Version.Features.Tracks.Handlers
                 track.IsActive = request.IsActive;
                 track.MaxCapacity = request.MaxCapacity;
 
+
                 _trackRepository.Update(track);
                 await _unitOfWork.CompleteAsync();
             }
