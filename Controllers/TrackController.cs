@@ -5,6 +5,7 @@ using LMS___Mini_Version.ViewModels.Track;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using LMS___Mini_Version.Features.Tracks.Queries;
+using LMS___Mini_Version.Features.Tracks.Commands;
 
 namespace LMS___Mini_Version.Controllers
 {
@@ -65,28 +66,14 @@ namespace LMS___Mini_Version.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, UpdateTrackViewModel vm)
         {
-            var dto = new TrackDto
-            {
-                Name = vm.Name,
-                Fees = vm.Fees,
-                IsActive = vm.IsActive,
-                MaxCapacity = vm.MaxCapacity
-            };
-
-            var updated = await _trackService.UpdateAsync(id, dto).ConfigureAwait(false);
-            if (!updated) return NotFound();
-
-            // No CompleteAsync here — the Service saves internally
+            await _mediator.Send(new UpdateTrackCommand(id, vm.Name, vm.Fees, vm.IsActive, vm.MaxCapacity));
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var deleted = await _trackService.DeleteAsync(id).ConfigureAwait(false);
-            if (!deleted) return NotFound();
-
-            // No CompleteAsync here — the Service saves internally
+            await _mediator.Send(new DeleteTrackCommand(id));
             return NoContent();
         }
     }
