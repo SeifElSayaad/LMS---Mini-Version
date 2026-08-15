@@ -3,6 +3,7 @@ using LMS___Mini_Version.Features.Interns.Queries;
 using LMS___Mini_Version.DTOs;
 using LMS___Mini_Version.Domain.Repositories;
 using LMS___Mini_Version.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS___Mini_Version.Features.Interns.Handlers
 {
@@ -17,21 +18,19 @@ namespace LMS___Mini_Version.Features.Interns.Handlers
 
         public async Task<InternDto?> Handle(GetInternByIdQuery request, CancellationToken cancellationToken)
         {
-            var intern = await _internRepository.GetByIdAsync(request.Id);
-            if (intern == null)
-            {
-                return null;
-            }
-            return new InternDto
-            {
-                Id = intern.Id,
-                FullName = intern.FullName,
-                Email = intern.Email,
-                BirthYear = intern.BirthYear,
-                Status = intern.Status,
-                TrackId = intern.TrackId,
-                TrackName = intern.Track?.Name ?? string.Empty
-            };
+            return await _internRepository.GetTable()
+               .Where(i => i.Id == request.Id)
+               .Select(i => new InternDto
+               {
+                   Id = i.Id,
+                   FullName = i.FullName,
+                   Email = i.Email,
+                   BirthYear = i.BirthYear,
+                   Status = i.Status,
+                   TrackId = i.TrackId,
+                   TrackName = i.Track.Name
+               })
+               .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }
