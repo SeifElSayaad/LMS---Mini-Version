@@ -1,11 +1,10 @@
 using MediatR;
-using LMS___Mini_Version.Features.Tracks.Queries;
+using LMS___Mini_Version.Features.Interns.Queries;
 using LMS___Mini_Version.DTOs;
 using LMS___Mini_Version.Domain.Repositories;
 using LMS___Mini_Version.Domain.Entities;
 
-
-namespace LMS___Mini_Version.Features.Tracks.Handlers
+namespace LMS___Mini_Version.Features.Interns.Handlers
 {
     public class GetInternByIdQueryHandler : IRequestHandler<GetInternByIdQuery, InternDto?>
     {

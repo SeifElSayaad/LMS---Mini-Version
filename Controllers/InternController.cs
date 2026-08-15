@@ -1,10 +1,10 @@
-﻿using LMS___Mini_Version.DTOs;
+using LMS___Mini_Version.DTOs;
 using LMS___Mini_Version.Mapping;
 using LMS___Mini_Version.Services.Interfaces;
 using LMS___Mini_Version.ViewModels.Intern;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using LMS___Mini_Version.Features.Tracks.Queries;
+using LMS___Mini_Version.Features.Interns.Queries;
 
 namespace LMS___Mini_Version.Controllers
 {

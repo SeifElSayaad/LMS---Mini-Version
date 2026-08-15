@@ -1,16 +1,14 @@
 using MediatR;
-using LMS___Mini_Version.Features.Tracks.Queries;
+using LMS___Mini_Version.Features.Interns.Queries;
 using LMS___Mini_Version.DTOs;
 using LMS___Mini_Version.Domain.Repositories;
 using LMS___Mini_Version.Domain.Entities;
-
 using Microsoft.EntityFrameworkCore;
 
-namespace LMS___Mini_Version.Features.Tracks.Handlers
+namespace LMS___Mini_Version.Features.Interns.Handlers
 {
     public class GetAllInternsQueryHandler : IRequestHandler<GetAllInternsQuery, IEnumerable<InternDto>>
     {
-
         private readonly IGeneralRepository<Intern> _internRepository;
 
         public GetAllInternsQueryHandler(IGeneralRepository<Intern> internRepository)
@@ -20,7 +18,6 @@ namespace LMS___Mini_Version.Features.Tracks.Handlers
 
         public async Task<IEnumerable<InternDto>> Handle(GetAllInternsQuery request, CancellationToken cancellationToken)
         {
-
             return await _internRepository.GetTable()
                 .Select(i => new InternDto
                 {

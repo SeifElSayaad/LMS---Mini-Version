@@ -1,12 +1,11 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using LMS___Mini_Version.Features.Tracks.Queries;
+using LMS___Mini_Version.Features.Enrollments.Queries;
 using LMS___Mini_Version.DTOs;
 using LMS___Mini_Version.Domain.Repositories;
 using LMS___Mini_Version.Domain.Entities;
-using LMS___Mini_Version.Mapping;
 
-namespace LMS___Mini_Version.Features.Tracks.Handlers
+namespace LMS___Mini_Version.Features.Enrollments.Handlers
 {
     public class GetEnrollmentsByInternQueryHandler : IRequestHandler<GetEnrollmentsByInternQuery, IEnumerable<EnrollmentDto>>
     {
@@ -35,7 +34,6 @@ namespace LMS___Mini_Version.Features.Tracks.Handlers
                 .ToListAsync(cancellationToken);
 
             return enrollments;
-
         }
     }
 }

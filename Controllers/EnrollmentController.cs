@@ -5,8 +5,8 @@ using LMS___Mini_Version.Services.Interfaces;
 using LMS___Mini_Version.ViewModels.Enrollment;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using LMS___Mini_Version.Features.Tracks.Queries;
-using LMS___Mini_Version.Features.Tracks.Commands;
+using LMS___Mini_Version.Features.Enrollments.Queries;
+using LMS___Mini_Version.Features.Enrollments.Commands;
 
 namespace LMS___Mini_Version.Controllers
 {

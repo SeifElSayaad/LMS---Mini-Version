@@ -1,10 +1,10 @@
 using MediatR;
-using LMS___Mini_Version.Features.Tracks.Commands;
+using LMS___Mini_Version.Features.Enrollments.Commands;
 using LMS___Mini_Version.Services.Interfaces;
 using LMS___Mini_Version.Domain.Repositories;
 using LMS___Mini_Version.Domain.Enums;
 
-namespace LMS___Mini_Version.Features.Tracks.Handlers
+namespace LMS___Mini_Version.Features.Enrollments.Handlers
 {
     public class TransferEnrollmentCommandHandler : IRequestHandler<TransferEnrollmentCommand, Unit>
     {
